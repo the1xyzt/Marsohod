@@ -14,17 +14,17 @@ class Player:
         pygame.draw.rect(surface, self.color, rectangel,0)
         cr_x = self.mx + 10/2
         cr_y = self.my + 10/2
-        pygame.draw.circle(surface, "blue", (cr_x, cr_y), 20, 1)
+        pygame.draw.circle(surface, "blue", (cr_x, cr_y), RADIUS_OF_VIEW_RESOURCES, 1)
 
     def player_move(self):
         keystate = pygame.key.get_pressed()
-        if keystate[pygame.K_RIGHT] and mx < HEIGHT - 10:
+        if keystate[pygame.K_RIGHT] and self.mx < HEIGHT - 10:
             self.mx += PLAYR_SPEED
-        if keystate[pygame.K_LEFT] and mx >0:
+        if keystate[pygame.K_LEFT] and self.mx >0:
             self.mx -= PLAYR_SPEED    
-        if keystate[pygame.K_UP] and my > 0:
+        if keystate[pygame.K_UP] and self.my > 0:
             self.my -= PLAYR_SPEED
-        if keystate[pygame.K_DOWN] and my < HEIGHT - 10:
+        if keystate[pygame.K_DOWN] and self.my < HEIGHT - 10:
             self.my += PLAYR_SPEED
 
 
