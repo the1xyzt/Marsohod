@@ -1,13 +1,13 @@
 import pygame
 
 class Resources:
-    def __init__(self, rx, ry, typee, width, height, ide, is_mining) -> None:
+    def __init__(self, rx, ry, typee, width, height,core_capacity ,is_mining):
         self.rx = rx
         self.ry = ry
         self.type = typee
         self.width = width 
         self.height = height
-        self.id = ide
+        self.core_capacity = core_capacity
         self.is_mining = is_mining
 
     def draw_resource(self, color,surface):

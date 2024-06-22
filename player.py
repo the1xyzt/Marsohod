@@ -18,13 +18,13 @@ class Player:
 
     def player_move(self):
         keystate = pygame.key.get_pressed()
-        if keystate[pygame.K_RIGHT] and self.mx < HEIGHT - 10:
+        if keystate[pygame.K_d] and self.mx < HEIGHT - 10:
             self.mx += PLAYR_SPEED
-        if keystate[pygame.K_LEFT] and self.mx >0:
+        if keystate[pygame.K_a] and self.mx >0:
             self.mx -= PLAYR_SPEED    
-        if keystate[pygame.K_UP] and self.my > 0:
+        if keystate[pygame.K_w] and self.my > 0:
             self.my -= PLAYR_SPEED
-        if keystate[pygame.K_DOWN] and self.my < HEIGHT - 10:
+        if keystate[pygame.K_s] and self.my < HEIGHT - 10:
             self.my += PLAYR_SPEED
 
 

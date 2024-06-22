@@ -8,7 +8,7 @@ from constants import*
 import player
 
 
-resources = []
+list_resources = []
 
 
 pygame.init()
@@ -17,8 +17,8 @@ pygame.display.set_caption(str(clock))
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 player = player.Player(mx,my,PLAYR_SPEED,PLAYER_COLOR,PLAYR_WIDTH,PLAYR_HEIGHT) 
-for i in range(3):
-    resources.append(Resources(random.randint(10,400),random.randint(10,400),random.choice(["Au","Ag","Cu"]),RESOURCE_WIDTH,RESOURCE_HEIGHT,str(i), True))
+for i in range(3): # Resource spawn 
+    list_resources.append(Resources(random.randint(10,400),random.randint(10,400),random.choice(["Au","Ag","Cu"]),RESOURCE_WIDTH,RESOURCE_HEIGHT,core_capacity, True))
 
 
 def is_resource_in_circle(mx, my, rx, ry ,r):
@@ -26,12 +26,16 @@ def is_resource_in_circle(mx, my, rx, ry ,r):
     if distanse <= r:
         return True
     else:
-        return False 
+        return False
+    
+def normalize_coord(coord:int):
+    return coord + RESOURCE_HEIGHT/2
+
 
 
 while True:
     clock.tick(FPS)
-    for i in resources:
+    for i in list_resources:
         if i.type == "Au":
             i.draw_resource( Au_color,screen )
         elif i.type == "Ag":
@@ -42,11 +46,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-    for resource in resources:
-        if is_resource_in_circle(player.mx,player.my, resource.rx,resource.ry, RADIUS_OF_VIEW_RESOURCES):
-            # resource.is_minig = True
-            resource.width -=0.1
-            resource.height -=0.1
+    for resource in list_resources:
+        if is_resource_in_circle(player.mx,player.my, normalize_coord(resource.rx),normalize_coord(resource.ry), RADIUS_OF_VIEW_RESOURCES):
+            resource.is_minig = True
+            resource.core_capacity -= 1
+        if resource.core_capacity == 0:
+            list_resources.remove(resource)
 
     player.draw_player(screen)
     player.player_move()
