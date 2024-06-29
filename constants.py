@@ -1,3 +1,4 @@
+import pygame
 WIDTH = 500
 HEIGHT = 500
 FPS = 60
@@ -12,8 +13,8 @@ PLAYR_HEIGHT = 10
 
 RADIUS_OF_VIEW_RESOURCES = 30
 
-RESOURCE_WIDTH = 50
-RESOURCE_HEIGHT =50
+resorce_width = 50
+resorce_height = 50
 core_capacity = 100
 rx = 150
 ry = 150
@@ -23,6 +24,5 @@ Cu_color = (184, 115, 5)
 Au_color = (255, 215, 0)
 Ag_color = (192, 192, 192)
 
-Cu_Width, Cu_Height = 10, 10
-Au_Width, Au_Height = 10, 10
-Ag_Width, Ag_Height = 10, 10
+
+

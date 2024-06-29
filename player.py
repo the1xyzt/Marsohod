@@ -26,5 +26,8 @@ class Player:
             self.my -= PLAYR_SPEED
         if keystate[pygame.K_s] and self.my < HEIGHT - 10:
             self.my += PLAYR_SPEED
-
+    def mining_key_is_pressed(self):
+        keystate = pygame.key.get_pressed()
+        if keystate[pygame.K_e]:
+            return True
 
