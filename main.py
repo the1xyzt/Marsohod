@@ -6,15 +6,16 @@ import time
 from resources import *
 from constants import*
 import player
+import inventori
 
 
 list_resources = []
-
+invent = inventori.Inventori()
 
 pygame.init()
 clock = pygame.time.Clock()
 pygame.display.set_caption(str(clock))
-background_image = pygame.image.load('textures/background.jpg')
+background_image = pygame.image.load('D:/py_proj/Marsohod/Marsohod/textures/background.jpg')
 # screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 screen = pygame.display.set_mode((500, 500))
 
@@ -39,12 +40,11 @@ while True:
     clock.tick(FPS)
     for i in list_resources:
         if i.type == "Au":
-            i.draw_resource( Au_color,screen )
+            i.draw_resource(screen )
         elif i.type == "Ag":
-            i.draw_resource(Ag_color,screen )
+            i.draw_resource(screen )
         elif i.type == "Cu":
-            i.draw_resource(Cu_color,screen )
-            screen.blit(i.cu_texture, i.rectangle)
+            i.draw_resource(screen )
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -53,13 +53,26 @@ while True:
         if is_resource_in_circle(player.mx,player.my, normalize_coord(resource.rx),normalize_coord(resource.ry), RADIUS_OF_VIEW_RESOURCES) and player.mining_key_is_pressed():
             resource.is_minig = True
             resource.core_capacity -= 1
-            print(resource.core_capacity)
+            if resource.type == "Au":
+                invent.sklad["au_count"] +=1
+            if resource.type == "Ag":
+                invent.sklad["ag_count"] +=1
+                invent.sklad["ag_count"] +=1
+            if resource.type == "Cu":
+                invent.sklad["cu_count"] +=1
+                print(invent.sklad["cu_count"])
         if resource.core_capacity == 0:
             list_resources.remove(resource)
+
+    font1 = pygame.font.Font(None, 20)
+    text1 = font1.render(str(invent.sklad), True,(0,0,0))
+
+
 
     player.draw_player(screen)
     player.player_move()
 
+    screen.blit(text1, (0,0))
     pygame.display.flip()
     screen.fill((0,0,0))
 

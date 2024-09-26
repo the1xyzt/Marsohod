@@ -15,12 +15,12 @@ RADIUS_OF_VIEW_RESOURCES = 30
 
 resorce_width = 50
 resorce_height = 50
-core_capacity = 100
+core_capacity = 10000
 rx = 150
 ry = 150
 
 
-Cu_color = (184, 115, 5)
+Cu_color = (255, 255, 255)
 Au_color = (255, 215, 0)
 Ag_color = (192, 192, 192)
 
